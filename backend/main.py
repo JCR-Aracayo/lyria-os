@@ -1,8 +1,17 @@
 from fastapi import FastAPI
 from database import get_connection
+from schemas.project import ProjectCreate
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Lyria OS API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def home():
@@ -44,3 +53,24 @@ def projects():
         }
         for row in rows
     ]
+
+
+@app.post("/projects")
+def create_project(project: ProjectCreate):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO projects (name, description)
+        VALUES (%s, %s)
+        """,
+        (project.name, project.description),
+    )
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+    return {"message": "Proyecto creado"}

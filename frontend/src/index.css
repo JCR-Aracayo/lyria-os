@@ -67,3 +67,24 @@ nav a.active{
 .logo span {
   color: #7c3aed;
 }
+
+input,
+textarea{
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  background:#111827;
+  color:white;
+  border:1px solid #374151;
+  border-radius:10px;
+}
+
+button{
+  margin-top:16px;
+  background:#7C3AED;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:10px;
+  cursor:pointer;
+}
