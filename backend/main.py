@@ -4,6 +4,8 @@ from schemas.project import ProjectCreate
 from fastapi.middleware.cors import CORSMiddleware
 from schemas.memory import MemoryUpdate
 from schemas.decision import DecisionCreate
+from schemas.chat import ChatMessage
+from services.orchestrator import process_message
 
 app = FastAPI(title="Lyria OS API")
 
@@ -207,3 +209,12 @@ def create_project(project: ProjectCreate):
     "id": project_id,
     "message": "Proyecto creado"
 }
+
+@app.post("/chat")
+def chat(body: ChatMessage):
+
+    reply = process_message(body.message)
+
+    return {
+        "reply": reply
+    }

@@ -1,19 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import Sidebar from "./components/Sidebar.jsx";
-import Home from "./pages/Home.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import Sidebar from "./components/Sidebar";
+import StatusPanel from "./components/StatusPanel";
+import Chat from "./pages/Chat";
 
 export default function App() {
   return (
-    <div className="app">
+    <div className="layout">
       <Sidebar />
 
-      <main className="content">
+      <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Chat />} />
         </Routes>
       </main>
+
+      <StatusPanel />
     </div>
   );
 }

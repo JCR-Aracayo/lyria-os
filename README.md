@@ -10,50 +10,51 @@ Su objetivo no es reemplazar al desarrollador, sino actuar como el orquestador q
 
 ## Estado del proyecto
 
-**Versión actual:** v0.1 — Fundación + Memoria Persistente
+**Versión actual:** v0.2 — Chat Inteligente + Orquestador
 
 ### Roadmap
 
 * [x] Semana 1 — Fundación (Docker + React + FastAPI + PostgreSQL)
 * [x] Semana 2 — CRUD de proyectos
 * [x] Semana 3 — Memoria persistente de proyectos
-* [ ] Semana 4 — Chat de Lyria
+* [x] Semana 4 — Chat Inteligente
 * [ ] Semana 5 — Orquestador de agentes
 * [ ] Semana 6 — Voz y comandos naturales
 
 ## Arquitectura
 
 ```text
-Frontend (React + Vite)
-        │
-        ▼
-Backend (FastAPI)
-        │
-        ▼
-PostgreSQL
-        │
-        ▼
-Project Memory
+React Chat UI
+      │
+      ▼
+FastAPI API
+      │
+      ▼
+Lyria Core (Orchestrator)
+      │
+      ▼
+PostgreSQL + Project Memory
 ```
 
 ## Funcionalidades implementadas
 
-* Crear proyectos
-* Listar proyectos
+* Crear y listar proyectos
 * Memoria persistente por proyecto
-* Actualizar arquitectura y stack tecnológico
-* Registrar decisiones de ingeniería
+* Actualizar arquitectura, stack y decisiones
+* Chat tipo ChatGPT
+* Comunicación React ↔ FastAPI (`POST /chat`)
+* Apertura de proyectos desde lenguaje natural
 * API documentada con Swagger
 
 ## Stack tecnológico
 
-| Tecnología     | Uso                                |
-| -------------- | ---------------------------------- |
-| React + Vite   | Interfaz de usuario                |
-| FastAPI        | API principal                      |
-| PostgreSQL 17  | Base de datos                      |
-| Docker Compose | Orquestación local                 |
-| DBeaver        | Administración de la base de datos |
+| Tecnología      | Uso                          |
+| --------------- | ---------------------------- |
+| React 19 + Vite | Interfaz de usuario          |
+| FastAPI         | API principal                |
+| PostgreSQL 17   | Base de datos                |
+| Docker Compose  | Desarrollo local             |
+| DBeaver         | Administración de PostgreSQL |
 
 ## Estructura
 
@@ -61,6 +62,8 @@ Project Memory
 lyria-os/
 ├── frontend/
 ├── backend/
+│   ├── schemas/
+│   └── services/
 ├── database/
 ├── agents/
 ├── memory/
@@ -70,4 +73,4 @@ lyria-os/
 
 ## Próximo objetivo
 
-Construir el chat de Lyria para gestionar proyectos desde lenguaje natural y preparar el futuro orquestador de agentes.
+Construir el sistema de orquestación de agentes para que Lyria pueda delegar tareas a Frontend, Backend y QA de forma inteligente.
